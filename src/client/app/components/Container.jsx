@@ -8,7 +8,7 @@ import Profile from './Profile.jsx';
 export default class Container extends Component {
   render() {
     return (
-      <div className="container">
+      <div className="container">  
         <Switch>
           <Route exact path='/' component={Main} />
           <Route path='/news' component={News} />

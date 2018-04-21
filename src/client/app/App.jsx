@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactDom from 'react-dom';
+
 import style from './style.css';
 
 import Header from './components/Header';
@@ -12,13 +12,11 @@ export default class App extends Component {
     render() {
         return (
             <div className='wrapper'>
+            
                 <Header />
-               
-                
-                    <Container />
-                 
-           
+                <Container />
                 <Footer />
             </div>)
     }
 }
+ 
