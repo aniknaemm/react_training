@@ -1,19 +1,26 @@
 import React, { Component } from 'react';
-
 import style from './style.css';
+import { Switch, Route } from 'react-router-dom';
 
+import Main from './components/Main.jsx';
+import News from './components/News.jsx';
+import Profile from './components/Profile.jsx';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Container from './components/Container';
-
 
 export default class App extends Component {
     render() {
-        const { history } = this.props;
+
         return (
             <div className='wrapper'>
                 <Header />
-                <Container history={history} />
+                <div className="container">
+                    <Switch>
+                        <Route exact path='/' component={Main} />
+                        <Route path='/news' component={News} />
+                        <Route path='/profile' component={Profile} />
+                    </Switch>
+                </div>
                 <Footer />
             </div>)
     }
