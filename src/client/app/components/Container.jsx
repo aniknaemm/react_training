@@ -1,20 +1,30 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
-
+import { connect } from 'react-redux';
 import Main from './Main.jsx';
 import News from './News.jsx';
+import Test from './Test.jsx';
 import Profile from './Profile.jsx';
-
-export default class Container extends Component {
+import { ConnectedRouter } from 'react-router-redux';
+class Container extends Component {
   render() {
+    const { history } = this.props;
     return (
-      <div className="container">  
-        <Switch>
+      <ConnectedRouter history={history}>
+        <div className="container">
           <Route exact path='/' component={Main} />
           <Route path='/news' component={News} />
           <Route path='/profile' component={Profile} />
-        </Switch>
-      </div>
-    )
+        </div>
+      </ConnectedRouter>
+        )
+      }
+    }
+function mapStateToProps(state, ownProps) {
+  // ownProps -то что передано в компенент в ручную
+  return {
+          isLogin: state.isLogon,
+    }
   }
-}
+  
+export default connect(mapStateToProps)(Container);

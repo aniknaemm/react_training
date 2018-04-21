@@ -18,9 +18,7 @@ const store = createStore(reducer , applyMiddleware(middleware), window.__REDUX_
 ReactDom.render((
     <Provider store={store}>
         <ConnectedRouter history={history}>
-        <div>
-            <App />
-        </div>    
+            <App history={history}/>  
         </ConnectedRouter>
     </Provider>
 ), document.getElementById('app'));
