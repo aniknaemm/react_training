@@ -8,11 +8,11 @@ body {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
+    justify-content: space-around;
     min-height: 50px;
     background-color: rgb(180, 180, 180);
 }
-
-.header a {
+.NavLink a{
     margin: 1rem;
 }
 
@@ -26,4 +26,18 @@ body {
     flex: 1;
     display: flex;
     flex-flow: row nowrap;
+}
+.loginForm{
+    width: 300px;
+    height: 200px;
+    background-color: rgba(207, 207, 207, 0.794);
+}
+.selected{
+    transform: scale(1.2);
+    color: red;
+}
+.Login{
+    margin-left: auto;
+    padding: 0.5rem;
+    background-color: rgb(170, 167, 167);
 }
