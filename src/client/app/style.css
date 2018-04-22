@@ -30,7 +30,10 @@ body {
     flex-flow: row nowrap;
 }
 .loginForm{
-    margin: 20%;
+    margin: 20% auto;
+    width: 200px;
+    height:200px;
+    padding: 10px;
     background-color: rgba(207, 207, 207, 0.794);
     display: flex;
     flex-flow: column nowrap;
