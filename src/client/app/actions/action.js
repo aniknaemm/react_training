@@ -1,7 +1,7 @@
 import { createAction } from 'redux-actions';
 
-export const loadStart = createAction('LOAD_START');
+export const setIsLogin = createAction('SET_IS_LOGIN');
 
-export const load = (dispatch) => {
-
+export const setLogin = (dispatch) => {
+    dispatch(setIsLogin())
 }

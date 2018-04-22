@@ -8,6 +8,7 @@ import Profile from './components/Profile.jsx';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Login from './components/Login';
+import Logout from './components/Logout';
 
 export default class App extends Component {
     render() {
@@ -21,6 +22,7 @@ export default class App extends Component {
                         <Route path='/news' component={News} />
                         <Route path='/profile' component={Profile} />
                         <Route path='/Login' component={Login} />
+                        <Route path='/Logout' component={Logout} />
                     </Switch>
                 </div>
                 <Footer />

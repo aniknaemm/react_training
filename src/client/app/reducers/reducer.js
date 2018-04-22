@@ -1,15 +1,16 @@
 import { handleActions } from 'redux-actions';
 
-import { load } from '../actions/action';
+import { setIsLogin } from '../actions/action';
 
 const initialState = {
     isLogin: false
 }
 
-export const reducer = handleActions({
-    [load]: (state) => {
+export const reducer = handleActions ({   
+    [setIsLogin]: (state) => {
         return{
             ...state,
+            isLogin: !(state.isLogin)
         }
     },
 }, initialState);

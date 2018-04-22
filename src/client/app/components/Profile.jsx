@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, Redirect } from 'react-router'
+import { Redirect } from 'react-router'
 
 class Profile extends Component {
   render() {

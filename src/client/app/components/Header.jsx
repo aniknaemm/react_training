@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 
-export default class Header extends Component {
+class Header extends Component {
   render() {
+    const { isLogin } = this.props;
     return <header className="header">
       header
      <div className="NavLink">
@@ -10,7 +13,16 @@ export default class Header extends Component {
         <NavLink to='/news' activeClassName="selected">новости</NavLink>
         <NavLink to='/profile' activeClassName="selected">профиль</NavLink>
       </div>
-      <Link to='/Login' className="Login">login</Link>
+      {isLogin && <Link to='/Login' className="Login">login</Link>}
+      {!(isLogin) && <Link to='/Logout' className="Login">logout</Link>}
+ 
     </header>;
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    isLogin: !(state.isLogin)
+  }
+}
+
+export default withRouter ( connect(mapStateToProps)(Header));
