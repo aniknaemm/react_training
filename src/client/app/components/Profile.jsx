@@ -1,7 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Route, Redirect } from 'react-router'
 
-export default class Profile extends Component {
+class Profile extends Component {
   render() {
-    return <div className="container">Profile</div>;
+    const { isLogin } = this.props;
+    return (
+      isLogin ? <div className="container">Profile</div> :<Redirect to ='/login'/>
+    )
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    isLogin: state.isLogin
+  }
+}
+
+export default connect(mapStateToProps)(Profile);

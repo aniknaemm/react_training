@@ -20,6 +20,8 @@ body {
     min-height: 100vh;
     display: flex;
     flex-flow: column nowrap;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .container {
@@ -28,9 +30,10 @@ body {
     flex-flow: row nowrap;
 }
 .loginForm{
-    width: 300px;
-    height: 200px;
+    margin: 20%;
     background-color: rgba(207, 207, 207, 0.794);
+    display: flex;
+    flex-flow: column nowrap;
 }
 .selected{
     transform: scale(1.2);
