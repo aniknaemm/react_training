@@ -1,6 +1,7 @@
 import { handleActions } from 'redux-actions';
 
 import { setIsLogin, setIsLogout } from '../actions/action';
+import { clearIsLogin } from '../actions/clearErrorMsg';
 
 const initialState = {
     isLogin: false,
@@ -23,6 +24,12 @@ export const reducer = handleActions ({
             ...state,
             isLogin: false,
             errorLogin: true
+        }
+    },
+    [clearIsLogin]: (state) => {
+        return{
+            ...state,
+            errorLogin: false
         }
     },
 }, initialState);

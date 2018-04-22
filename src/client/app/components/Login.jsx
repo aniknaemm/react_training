@@ -1,30 +1,38 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setLogin } from '../actions/action';
+import { clearLogin } from '../actions/clearErrorMsg';
 import { Redirect } from 'react-router';
 import ReactDom from 'react-dom';
 class Login extends Component {
-  handlerLogin = () =>{
+  constructor(props) {
+    super(props);
+    this.myRefLogin = React.createRef();
+    this.myRefPassword = React.createRef();
+  }
+  handlerLogin = () => {
     const { statusLogin, login, password } = this.props;
-    if(ReactDom.findDOMNode(this.refs.loginInput).value === login &&
-     ReactDom.findDOMNode(this.refs.paswordInput).value === password){
-        statusLogin(true);
+    if (this.myRefLogin.current.value === login && this.myRefPassword.current.value === password) {
+      statusLogin(true);
     } else {
       statusLogin(false);
     }
-    
   }
-  
+  componentDidMount(){
+    const { statusClear } = this.props;
+    statusClear();
+  }
+
   render() {
     const { isLogin, errorLogin, errorMsg } = this.props;
     return (
       <div className="loginForm">
-      {isLogin && <Redirect to ='/profile'/>}
+        {isLogin && <Redirect to='/profile' />}
         <h2>Авторизация</h2>
-        <input type="text" placeholder="login" ref="loginInput"/>
-        <input type="pasword" placeholder="pasword" ref="paswordInput"/>
-        <button onClick={this.handlerLogin}>Login</button> 
-        {errorLogin && { errorMsg }}
+        <input type="text" placeholder="login" ref={this.myRefLogin} />
+        <input type="pasword" placeholder="pasword" ref={this.myRefPassword} />
+        <button onClick={this.handlerLogin}>Login</button>
+        {errorLogin && errorMsg }
       </div>)
   }
 }
@@ -39,7 +47,8 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    statusLogin: (status) => setLogin(dispatch, status)
+    statusLogin: (status) => setLogin(dispatch, status),
+    statusClear: () => clearLogin(dispatch)
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

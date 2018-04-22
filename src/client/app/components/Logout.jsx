@@ -6,7 +6,7 @@ import { Redirect } from 'react-router';
 class Logout extends Component {
   componentDidMount(){
     const { statusLogin } = this.props;
-    statusLogin();
+    statusLogin(false);
   }
   render() { 
     return (
@@ -16,14 +16,10 @@ class Logout extends Component {
     )
   }
 }
-const mapStateToProps = (state) => {
-  return {
-    isLogin: state.isLogin
-  }
-}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     statusLogin: () => setLogin(dispatch)
   }
 }
-export default connect(mapStateToProps,mapDispatchToProps)(Logout);
+export default connect(null,mapDispatchToProps)(Logout);
