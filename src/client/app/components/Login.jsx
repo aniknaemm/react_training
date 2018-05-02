@@ -8,29 +8,42 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.myRefLogin = React.createRef();
-    this.myRefPassword = React.createRef();
+    this.state = {
+      password: ''
+    }
   }
   handlerLogin = () => {
     const { statusLogin } = this.props;
+    const { password } = this.state;
     const username = this.myRefLogin.current.value;
-    const password = this.myRefPassword.current.value;
-    statusLogin( username, password );
+    statusLogin(username, password);
+    this.setState({
+      password: ''
+    })
   }
-  componentDidMount(){
+  handlerPassword = (e) => {
+    const value = e.currentTarget.value;
+    this.setState(prev => ({
+      ...prev,
+      password: value,
+    }))
+  }
+  componentDidMount() {
     const { statusClear } = this.props;
     statusClear();
   }
 
   render() {
     const { isLogin, errorLogin, errorMsg } = this.props;
+    const { password } = this.state;
     return (
       <div className="loginForm">
         {isLogin && <Redirect to='/profile' />}
         <h2>Авторизация</h2>
         <input type="email" placeholder="email" ref={this.myRefLogin} />
-        <input type="pasword" placeholder="pasword" ref={this.myRefPassword} />
+        <input type="pasword" placeholder="pasword" onChange={this.handlerPassword} value={password} />
         <button onClick={this.handlerLogin}>Login</button>
-        {errorLogin && errorMsg }
+        {errorLogin && errorMsg}
       </div>)
   }
 }
@@ -43,7 +56,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    statusLogin: ( username, password ) => setLogin(dispatch, username, password),
+    statusLogin: (username, password) => setLogin(dispatch, username, password),
     statusClear: () => clearLogin(dispatch)
   }
 }
