@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setLogin } from '../actions/action';
-import { clearLogin } from '../actions/clearErrorMsg';
 import { Redirect } from 'react-router';
 import ReactDom from 'react-dom';
 class Login extends Component {
@@ -28,10 +27,6 @@ class Login extends Component {
       password: value,
     }))
   }
-  componentDidMount() {
-    const { statusClear } = this.props;
-    statusClear();
-  }
 
   render() {
     const { isLogin, errorLogin, errorMsg } = this.props;
@@ -57,7 +52,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     statusLogin: (username, password) => setLogin(dispatch, username, password),
-    statusClear: () => clearLogin(dispatch)
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
