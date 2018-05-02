@@ -1,33 +1,63 @@
-import { handleActions } from 'redux-actions';
+import {
+    handleActions
+} from 'redux-actions';
 
-import { setIsLogin, setIsLogout } from '../actions/action';
-import { clearIsLogin } from '../actions/clearErrorMsg';
+import {
+    loadInfoStart,
+    loadInfoSuccess,
+    loadInfoFailure,
+    LogOutUser
+} from '../actions/action';
+import {
+    clearIsLogin
+} from '../actions/clearErrorMsg';
 
 const initialState = {
     isLogin: false,
-    password: '12345',
-    login: 'admin',
     errorLogin: false,
-    errorMsg: "Имя пользователя или пароль введены не верно"
+    errorMsg: '',
+    idUser: '',
+    isLoad: false
 }
 
-export const reducer = handleActions ({   
-    [setIsLogin]: (state) => {
-        return{
+export const reducer = handleActions({
+
+    [loadInfoStart]: (state) => {
+        return {
             ...state,
+            isLoad: true,
+            errorLogin: false,
+        }
+    },
+    [loadInfoSuccess]: (state, action) => {
+        return {
+            ...state,
+            isLoad: false,
+            idUser: action.payload.data.id,
+            errorLogin: false,
             isLogin: true,
-            errorLogin: false
         }
     },
-    [setIsLogout]: (state) => {
-        return{
+    [loadInfoFailure]: (state, action) => {
+        return {
             ...state,
+            isLoad: false,
+            errorMsg: action.payload.message,
+            errorLogin: true,
             isLogin: false,
-            errorLogin: true
         }
     },
+    [LogOutUser]: (state) => {
+        return {
+            ...state,
+            isLoad: false,
+            errorLogin: false,
+            isLogin: false,
+        }
+    },
+
     [clearIsLogin]: (state) => {
-        return{
+        return {
             ...state,
             errorLogin: false
         }

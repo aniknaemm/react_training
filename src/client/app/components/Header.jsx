@@ -7,7 +7,7 @@ import { setLogin } from '../actions/action';
 class Header extends Component {
   logOut = () => {
     const { statusLogin } = this.props;
-    statusLogin(false);
+    statusLogin();
   }
 
   render() {

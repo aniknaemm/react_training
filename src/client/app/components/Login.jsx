@@ -11,12 +11,10 @@ class Login extends Component {
     this.myRefPassword = React.createRef();
   }
   handlerLogin = () => {
-    const { statusLogin, login, password } = this.props;
-    if (this.myRefLogin.current.value === login && this.myRefPassword.current.value === password) {
-      statusLogin(true);
-    } else {
-      statusLogin(false);
-    }
+    const { statusLogin } = this.props;
+    const username = this.myRefLogin.current.value;
+    const password = this.myRefPassword.current.value;
+    statusLogin( username, password );
   }
   componentDidMount(){
     const { statusClear } = this.props;
@@ -29,7 +27,7 @@ class Login extends Component {
       <div className="loginForm">
         {isLogin && <Redirect to='/profile' />}
         <h2>Авторизация</h2>
-        <input type="text" placeholder="login" ref={this.myRefLogin} />
+        <input type="email" placeholder="email" ref={this.myRefLogin} />
         <input type="pasword" placeholder="pasword" ref={this.myRefPassword} />
         <button onClick={this.handlerLogin}>Login</button>
         {errorLogin && errorMsg }
@@ -39,15 +37,13 @@ class Login extends Component {
 const mapStateToProps = (state) => {
   return {
     isLogin: state.isLogin,
-    password: state.password,
-    login: state.login,
     errorLogin: state.errorLogin,
     errorMsg: state.errorMsg,
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    statusLogin: (status) => setLogin(dispatch, status),
+    statusLogin: ( username, password ) => setLogin(dispatch, username, password),
     statusClear: () => clearLogin(dispatch)
   }
 }
