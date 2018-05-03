@@ -29,7 +29,7 @@ class Login extends Component {
   }
 
   render() {
-    const { isLogin, errorLogin, errorMsg } = this.props;
+    const { isLogin, errorLogin, errorMsg, isLoad } = this.props;
     const { password } = this.state;
     return (
       <div className="loginForm">
@@ -37,7 +37,7 @@ class Login extends Component {
         <h2>Авторизация</h2>
         <input type="email" placeholder="email" ref={this.myRefLogin} />
         <input type="pasword" placeholder="pasword" onChange={this.handlerPassword} value={password} />
-        <button onClick={this.handlerLogin}>Login</button>
+        <button onClick={isLoad ? null : this.handlerLogin}>{isLoad ? 'Подождите' : 'Login'}</button>
         {errorLogin && errorMsg}
       </div>)
   }
@@ -47,6 +47,8 @@ const mapStateToProps = (state) => {
     isLogin: state.isLogin,
     errorLogin: state.errorLogin,
     errorMsg: state.errorMsg,
+    isLoad: state.isLoad,
+    
   }
 }
 const mapDispatchToProps = (dispatch) => {
