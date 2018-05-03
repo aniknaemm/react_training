@@ -6,7 +6,8 @@ import {
     loadInfoStart,
     loadInfoSuccess,
     loadInfoFailure,
-    LogOutUser
+    LogOutUser,
+    loadUserInfoForID,
 } from '../actions/action';
 
 const initialState = {
@@ -14,11 +15,18 @@ const initialState = {
     errorLogin: false,
     errorMsg: '',
     idUser: '',
-    isLoad: false
+    isLoad: false,
+    userData: [],
 }
 
 export const reducer = handleActions({
-
+    [loadUserInfoForID]: (state, action) => {
+        return {
+            ...state,
+            isLoad: false,
+            userData: action.payload.data,
+        }
+    },
     [loadInfoStart]: (state) => {
         return {
             ...state,
