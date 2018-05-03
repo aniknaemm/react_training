@@ -1,7 +1,40 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class News extends Component {
+import { loadNews } from '../actions/action'
+class News extends Component {
+  componentDidMount(){
+    const { getNews } = this.props;
+    getNews();
+  }
   render() {
-    return <div className="container">News</div>;
+    const { isLoad, news } = this.props;
+    return (
+      isLoad ? 'loading...'
+        : <div className="container">
+          {news.map((elem, indx) => {
+            return (
+              <div className="cardNew" key={elem.title+indx}>
+                <h4>{elem.title}</h4>
+                <p>{elem.text}</p>
+              </div>
+            )
+          })}
+          <p className="countNews">всего новостей: {news.length}</p>
+        </div>
+    )
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    news: state.news,
+    isLoad: state.isLoad,
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getNews: () => loadNews(dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(News);

@@ -8,6 +8,7 @@ import {
     loadInfoFailure,
     LogOutUser,
     loadUserInfoForID,
+    loadNewsFromServ,
 } from '../actions/action';
 
 const initialState = {
@@ -17,9 +18,17 @@ const initialState = {
     idUser: '',
     isLoad: false,
     userData: [],
+    news: [],
 }
 
 export const reducer = handleActions({
+    [loadNewsFromServ]: (state, action) => {
+        return {
+            ...state,
+            isLoad: false,
+            news: action.payload.data,
+        }
+    },
     [loadUserInfoForID]: (state, action) => {
         return {
             ...state,

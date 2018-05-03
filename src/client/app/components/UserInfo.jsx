@@ -10,25 +10,26 @@ class UserInfo extends Component {
     }
     render() {
         const { userData, isLoad } = this.props;
-        console.log(userData);
-        console.log(userData.languages);
-        console.log(userData.social);
         return (
 
             isLoad ? 'loading...' : <div >
-                <p>{userData.userId}</p>
+                <p>Город</p>
                 <p>{userData.city}</p>
-
-                { (userData.languages) ? userData.languages.map( elem => { return <p key={elem}>{elem}</p>}) : null}
-                {(userData.social) ? userData.social.map(elem => {
-                    return (
-                        <div key={elem.label}>
-                            <p>{elem.label}:</p>
-                            <a href={elem.link} target="_blank">{elem.link}</a>
-                        </div>
-                    )
-                }) : null
-                }
+                <p>знане языков:</p>
+                <ul>
+                    { (userData.languages) ? userData.languages.map( elem => { return <li key={elem}>{elem}</li>}) : null}
+                </ul>
+                <p>ссылки :</p>
+                <ul>
+                    {(userData.social) ? userData.social.map(elem => {
+                        return (
+                            <li key={elem.label}>
+                                <a href={elem.link} target="_blank">{elem.link}</a>
+                            </li> 
+                        )
+                    }) : null
+                    }
+                 </ul>
             </div>
         )
     }

@@ -27,7 +27,10 @@ body {
 .container {
     flex: 1;
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: column nowrap;
+    position: relative;
+    align-items: center;
+    justify-content: space-evenly;
 }
 .loginForm{
     margin: 20% auto;
@@ -46,4 +49,17 @@ body {
     margin-left: auto;
     padding: 0.5rem;
     background-color: rgb(170, 167, 167);
+}
+.cardNew{
+    text-align: center;
+    padding: 5px;
+    margin: 5px;
+    flex: 1;
+    border: 1px solid grey;
+
+}
+.countNews{
+    position: absolute;
+    bottom: -35px;
+    right: 10px;
 }
