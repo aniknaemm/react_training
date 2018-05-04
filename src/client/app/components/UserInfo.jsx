@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { loadUserInfo } from '../actions/action'
+import List from './List'
 
 class UserInfo extends Component {
     componentDidMount() {
@@ -29,9 +30,7 @@ class UserInfo extends Component {
                             )
                         }).map( elem => {
                              return (
-                            <li key={elem.label}>
-                                <a href={elem.link} target="_blank"><img src={`./${elem.label}.png`}/></a>
-                            </li> 
+                            <List key = {elem.label} link = {elem.link} label = {elem.label}/>
                         ) }) : null
                     }
                     {(userData.social) ? userData.social.filter(elem => {
@@ -40,9 +39,7 @@ class UserInfo extends Component {
                      )
                     }).map(elem => {
                         return (
-                            <li key={elem.label}>
-                                <a href={elem.link} target="_blank"><img src={`./${elem.label}.png`}/></a>
-                            </li> 
+                            <List key = {elem.label} link = {elem.link} label = {elem.label}/>
                         )
                     }) : null
                     }
