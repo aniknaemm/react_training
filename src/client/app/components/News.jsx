@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { loadNews } from '../actions/action'
+import New from './New'
 class News extends Component {
-  componentDidMount(){
+  componentDidMount() {
     const { getNews } = this.props;
     getNews();
   }
@@ -14,10 +15,7 @@ class News extends Component {
         : <div className="container">
           {news.map((elem, indx) => {
             return (
-              <div className="cardNew" key={elem.title+indx}>
-                <h4>{elem.title}</h4>
-                <p>{elem.text}</p>
-              </div>
+              <New text = {elem.text} title = {elem.title} key= {elem.title+indx}/>
             )
           })}
           <p className="countNews">всего новостей: {news.length}</p>
