@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { loadNews } from '../actions/action'
-import New from './New'
+import { loadNews } from '../actions/action';
+import New from './New';
+import Loader from './Loader';
+
 class News extends Component {
   componentDidMount() {
     const { getNews } = this.props;
@@ -11,7 +13,7 @@ class News extends Component {
   render() {
     const { isLoad, news } = this.props;
     return (
-      isLoad ? 'loading...'
+      isLoad ? <Loader />
         : <div className="container">
           {news.map((elem, indx) => {
             return (
