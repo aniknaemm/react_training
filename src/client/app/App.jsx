@@ -11,20 +11,21 @@ import Login from './components/Login';
 import NotFound from './components/NotFound';
 
 export default class App extends Component {
-    render() {
-        return (
-            <div className='wrapper'>
-                <Header />
-                <div className="container">
-                    <Switch>
-                        <Route exact path='/' component={Main} />
-                        <Route path='/news' component={News} />
-                        <Route path='/profile' component={Profile} />
-                        <Route path='/Login' component={Login} />
-                        <Route component={NotFound} />
-                    </Switch>
-                </div>
-                <Footer />
-            </div>)
-    }
+  render() {
+    return (
+      <div className="wrapper">
+        <Header />
+        <div className="container">
+          <Switch>
+            <Route exact path="/" component={Main} />
+            <Route path="/news" component={News} />
+            <Route path="/profile" component={Profile} />
+            <Route path="/Login" component={Login} />
+            <Route component={NotFound} />
+          </Switch>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 }

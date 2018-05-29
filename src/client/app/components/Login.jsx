@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { setLogin } from '../actions/action';
 import { Redirect } from 'react-router';
 import ReactDom from 'react-dom';
+
 class Login extends Component {
   constructor(props) {
     super(props);

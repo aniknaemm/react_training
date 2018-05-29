@@ -32,7 +32,7 @@ export const setLogOut = (dispatch) => {
 }
 
 export const loadUserInfo = (dispatch, idUser) => {
-   
+
     dispatch(loadInfoStart());
     fetch(`https://mysterious-reef-29460.herokuapp.com/api/v1/user-info/${idUser}`)
         .then(result => result.json())
@@ -41,7 +41,7 @@ export const loadUserInfo = (dispatch, idUser) => {
         })
 }
 export const loadNews = (dispatch) => {
-   
+
     dispatch(loadInfoStart());
     fetch(`https://mysterious-reef-29460.herokuapp.com/api/v1/news`)
         .then(result => result.json())

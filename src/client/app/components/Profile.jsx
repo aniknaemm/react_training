@@ -4,9 +4,7 @@ import { Redirect } from 'react-router'
 
 import UserInfo from './UserInfo'
 
-
 class Profile extends Component {
-
   render() {
     const { isLogin } = this.props;
     return (
