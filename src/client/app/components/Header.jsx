@@ -3,37 +3,63 @@ import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { setLogin } from '../actions/action';
+import PropTypes from 'prop-types';
 
 class Header extends Component {
   logOut = () => {
     const { statusLogin } = this.props;
     statusLogin();
-  }
+  };
 
   render() {
     const { isLogin } = this.props;
-    return <header className="header">
-      header
-     <div className="NavLink">
-        <NavLink exact to='/' activeClassName="selected">главная</NavLink>
-        <NavLink to='/news' activeClassName="selected">новости</NavLink>
-        <NavLink to='/profile' activeClassName="selected">профиль</NavLink>
-      </div>
-      {!(isLogin) && <Link to='/Login' className="Login">login</Link>}
-      {isLogin && <Link to='/' onClick={this.logOut} className="Login">logout</Link>}
- 
-    </header>;
+    return (
+      <header className="header">
+        header
+        <div className="NavLink">
+          <NavLink exact to="/" activeClassName="selected">
+            главная
+          </NavLink>
+          <NavLink to="/news" activeClassName="selected">
+            новости
+          </NavLink>
+          <NavLink to="/profile" activeClassName="selected">
+            профиль
+          </NavLink>
+        </div>
+        {!isLogin && (
+          <Link to="/Login" className="Login">
+            login
+          </Link>
+        )}
+        {isLogin && (
+          <Link to="/" onClick={this.logOut} className="Login">
+            logout
+          </Link>
+        )}
+      </header>
+    );
   }
 }
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     isLogin: state.isLogin
-  }
-}
-const mapDispatchToProps = (dispatch) => {
+  };
+};
+const mapDispatchToProps = dispatch => {
   return {
-    statusLogin: (status) => setLogin(dispatch, status),
-  }
-}
+    statusLogin: status => setLogin(dispatch, status)
+  };
+};
 
-export default withRouter ( connect(mapStateToProps, mapDispatchToProps)(Header));
+Header.propTypes = {
+  statusLogin: PropTypes.func.isRequired,
+  isLogin: PropTypes.bool.isRequired
+};
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Header)
+);

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { loadUserInfo } from '../actions/action';
 import List from './List';
@@ -11,7 +12,6 @@ class UserInfo extends Component {
   }
   render() {
     const { userData, isLoad } = this.props;
-    const firstItem = 'web';
     return isLoad ? (
       'loading...'
     ) : (
@@ -29,34 +29,9 @@ class UserInfo extends Component {
         <p>ссылки :</p>
         <ul>
           {userData.social
-            ? userData.social
-                .filter(elem => {
-                  return elem.label === firstItem;
-                })
-                .map(elem => {
-                  return (
-                    <List
-                      key={elem.label}
-                      link={elem.link}
-                      label={elem.label}
-                    />
-                  );
-                })
-            : null}
-          {userData.social
-            ? userData.social
-                .filter(elem => {
-                  return elem.label !== firstItem;
-                })
-                .map(elem => {
-                  return (
-                    <List
-                      key={elem.label}
-                      link={elem.link}
-                      label={elem.label}
-                    />
-                  );
-                })
+            ? userData.social.map(elem => {
+                return <List key={elem.label} link={elem.link} label={elem.label} />;
+              })
             : null}
         </ul>
       </div>
@@ -76,4 +51,14 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserInfo);
+UserInfo.propTypes = {
+  idUser: PropTypes.number.isRequired,
+  getUserInfo: PropTypes.func.isRequired,
+  isLoad: PropTypes.bool.isRequired,
+  userData: PropTypes.object
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UserInfo);
